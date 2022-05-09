@@ -1,16 +1,13 @@
-import javax.sound.sampled.Port;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.xml.transform.stream.StreamSource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Program implements ActionListener {
@@ -26,10 +23,7 @@ public class Program implements ActionListener {
     JTextField username;
     JPasswordField  password;
 
-
-    String connection_status = "Not Connected";
-
-
+    public String version = "0.1";
 
     public void Init(){
         DisplayInit();
@@ -45,39 +39,36 @@ public class Program implements ActionListener {
         f.setResizable(false);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
         menu_panel.setBounds(0,0,300,300);
-        menu_panel.setLayout(null);
+        menu_panel.setLayout(new GridLayout(6,1));
+
         con_panel.setBounds(0,0,300,300);
         con_panel.setLayout(null);
 
         //-------------Menu UI--------------------------
         JLabel l_menu = new JLabel("MENU", SwingConstants.CENTER);
-        l_menu.setBounds(0,10,300,15);
         menu_panel.add(l_menu);
 
         JButton connect_btn = new JButton("Connect");
-        connect_btn.setBounds(0,40,300,50);
         connect_btn.setActionCommand("connect");
         connect_btn.addActionListener(this);
         menu_panel.add(connect_btn);
 
         JButton test_btn = new JButton("Test Connect");
-        test_btn.setBounds(0,100,300,50);
         test_btn.setActionCommand("test");
         test_btn.addActionListener(this);
         menu_panel.add(test_btn);
 
         JButton exit_btn = new JButton("Exit");
-        exit_btn.setBounds(0,160,300,50);
         exit_btn.setActionCommand("exit");
         exit_btn.addActionListener(this);
         menu_panel.add(exit_btn);
 
         JLabel label = new JLabel("Created By Christopher Axiotis", SwingConstants.CENTER);
-        label.setBounds(0,230,300,15);
         menu_panel.add(label);
 
+        JLabel version_label = new JLabel("Version: " + version, SwingConstants.CENTER);
+        menu_panel.add(version_label);
 
         //-------------Connection UI--------------------------
 
@@ -85,7 +76,6 @@ public class Program implements ActionListener {
         JLabel con_l = new JLabel("Connection", SwingConstants.CENTER);
         con_l.setBounds(0,10,300,15);
         con_panel.add(con_l);
-
 
         //database url START
         JLabel db_label = new JLabel("Database URL: ", SwingConstants.RIGHT);
@@ -97,8 +87,6 @@ public class Program implements ActionListener {
         url.setBounds(110,15 + 40,160,20);
         con_panel.add(url);
         //database url END
-
-
 
         //database port START
         JLabel port_l = new JLabel("Port:", SwingConstants.RIGHT);
@@ -132,8 +120,6 @@ public class Program implements ActionListener {
         password.setBounds(110,120 + 40,160,20);
         con_panel.add(password);
         //database password END
-
-
 
         JButton con_btn = new JButton("Next");
         con_btn.setBounds(200,225,70,30);
@@ -206,10 +192,7 @@ public class Program implements ActionListener {
         output.setLocationRelativeTo(null);
         output.setVisible(true);//making the frame visible
         output.setResizable(true);
-        //output.setLayout(new GridLayout(1,2));
         output.setLayout(null);
-
-
 
         List<String> schemas = c.GetSchemas();
 
@@ -279,8 +262,6 @@ public class Program implements ActionListener {
 
     }
 
-
-
     public void actionPerformed(ActionEvent e) {
         String actionCommand = ((JButton) e.getSource()).getActionCommand();
 
@@ -309,15 +290,9 @@ public class Program implements ActionListener {
     public static void infoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
-
-
-
-
+    
     public static void Print(Object str){
         System.out.println(str);
     }
-
-
-
 
 }//End Class
