@@ -11,4 +11,6 @@ Example: If you want to connect to "jdbc:mysql://localhost/mySchema" in the conn
 
 Version 0.1
 
+This project is still under development.
+
 Created by Christopher Axiotis.
