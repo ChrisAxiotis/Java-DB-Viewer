@@ -54,10 +54,12 @@ public class Program implements ActionListener {
         connect_btn.addActionListener(this);
         menu_panel.add(connect_btn);
 
+        /*
         JButton test_btn = new JButton("Test Connect");
         test_btn.setActionCommand("test");
         test_btn.addActionListener(this);
         menu_panel.add(test_btn);
+         */
 
         JButton exit_btn = new JButton("Exit");
         exit_btn.setActionCommand("exit");
@@ -228,9 +230,12 @@ public class Program implements ActionListener {
 
                 try {
                     for (int i = 1; i < output.getContentPane().getComponentCount(); i++){
-                        Print(output.getComponentCount());
                         output.getContentPane().remove(i);
                     }
+
+
+                        if(!c.ValidCheck(node.getParent().toString()))
+                            return;
 
 
                     JTable table = c.GetFromTable(node.getParent().toString(), nodeInfo.toString());
@@ -290,7 +295,7 @@ public class Program implements ActionListener {
     public static void infoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     public static void Print(Object str){
         System.out.println(str);
     }
