@@ -22,6 +22,7 @@ public class Connector {
             System.out.println("Connected!");
         } catch (SQLException e) {
             System.out.println("Cant Connect!");
+            Program.infoBox("Can't Connect!", "Alert!");
         }
     }
 
