@@ -9,7 +9,7 @@ import java.util.Vector;
 public class Connector {
 
 
-    Connection conn;
+    public Connection conn;
 
 
     public Connector(String url, String user, String pass, String port){
@@ -17,15 +17,12 @@ public class Connector {
     }
 
     public void Connect(String url, String user, String pass, String port) {
-
-
         try {
             conn = DriverManager.getConnection("jdbc:mysql://" + url, user, pass);
             System.out.println("Connected!");
         } catch (SQLException e) {
             System.out.println("Cant Connect!");
         }
-
     }
 
 
@@ -84,6 +81,18 @@ public class Connector {
 
         return new DefaultTableModel(data, columnNames);
 
+    }
+
+
+    public boolean ValidCheck(String key) throws SQLException {
+        boolean isValid = false;
+
+        for (Object str:  GetSchemas()) {
+            if(key.equals(str))
+                isValid = true;
+        }
+
+        return isValid;
     }
 
 
